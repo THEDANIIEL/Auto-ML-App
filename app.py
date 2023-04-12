@@ -3,7 +3,7 @@ import pandas as pd
 import os
 from streamlit_pandas_profiling import st_profile_report
 import pandas_profiling
-from pycaret.classification import setup, compare_models, pull, save_model
+
 
 with st.sidebar:
     st.image("../Auto-ML/ONE-POINT-01-1.png")
@@ -29,6 +29,7 @@ if choice == "Profiling":
     st_profile_report(profile_report)
 
 if choice == "Classification Model":
+    from pycaret.classification import setup, compare_models, pull, save_model
     st.title("Classification Model")
     target = st.selectbox("Select your target", df.columns)
     if st.button("train model"):
@@ -44,9 +45,9 @@ if choice == "Classification Model":
         save_model(best_model, 'best_model')
 
 
-from pycaret.regression import setup, compare_models, pull, save_model
 
 if choice == "Regression Model":
+    from pycaret.regression import setup, compare_models, pull, save_model
     st.title("Regression Model")
     target = st.selectbox("Select your target", df.columns)
     if st.button("train model"):
